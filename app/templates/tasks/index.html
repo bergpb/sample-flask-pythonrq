@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <form action="" method="post">
+            <div class="form-group">
+              <label>Word count</label>
+              <input type="text" class="form-control" name="url" placeholder="Enter URL" value="{{ url }}" required>
+              {% if message %}
+                <small class="form-text text-muted">{{ message }}</small>
+              {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

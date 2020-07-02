@@ -5,3 +5,22 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+  flask:
+    build: .
+    volumes:
+      - ".:/home/flask-rq"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      - RQ_DASHBOARD_REDIS_URL=redis://redis:6379
+  worker:
+    build: .
+    command: rq worker --url redis://redis:6379
+    depends_on:
+      - redis
+    links:
+      - redis

@@ -1,0 +1,29 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{ url_for('.add_task') }}">Flask + RQ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+               href="{{ url_for('.add_task') }}">Add Task</a>
+          </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary" style="float:right;margin-bottom:-10px;">{{ q_len }}</span>
+          <a class="nav-link {% if request.path == '/queue' %}active{% endif %}"
+             href="{{ url_for('.tasks_in_queue') }}">Jobs in queue</a>
+        </li>
+        <li class="nav-item">
+          <span class="badge badge-pill badge-primary" style="float:right;margin-bottom:-10px;">{{ f_len }}</span>
+          <a class="nav-link {% if request.path == '/finished' %}active{% endif %}" 
+             href="{{ url_for('.finished_tasks') }}">Finished jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             target="_blank"
+             href="/rq-dashboard">RQ Dashboard</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
